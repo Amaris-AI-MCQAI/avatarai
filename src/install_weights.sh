@@ -1,0 +1,1 @@
+ wget --no-check-certificate -O "./mseg-semantic/models/mseg-3m.pth" "https://github.com/mseg-dataset/mseg-semantic/releases/download/v0.1/mseg-3m-1080p.pth"

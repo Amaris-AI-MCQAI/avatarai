@@ -1,0 +1,8 @@
+__pycache__/
+env/
+src/__pycache__/
+src/moodle_backend_venv/
+.DS_Store
+src/avatar/Wav2Lip/checkpoints/*.pth
+src/avatar/Wav2Lip/face_detection/detection/sfd/*.pth
+src/avatar/input_processor/xception_pascalvoc.pb
