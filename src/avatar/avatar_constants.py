@@ -1,8 +1,6 @@
 TRANSCRIPT_TEXT = 'text'
 TRANSCRIPT_FILE= 'file'
 
-FROM_IMAGE = 'From Image'
-
 FROM_INPUT = 'From Input'
 
 NO_TRANSLATION = 'No translation'
