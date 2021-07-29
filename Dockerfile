@@ -30,5 +30,5 @@ COPY ./src .
 WORKDIR /api/src
 
 # download sample data and weights
-RUN ["chmod", "+x", "./download_weights.sh"]
+RUN ["chmod", "+x", "./install_weights.sh"]
 RUN ./download_weights.sh

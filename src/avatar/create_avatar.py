@@ -6,7 +6,6 @@ from .avatar_constants import (
     NO_TRANSLATION, TRANSCRIPT_FILE, TRANSCRIPT_TEXT,
     DOCX, PPTX, PDF, WAV,
     MIME_TO_EXT,
-    FROM_IMAGE,
     FROM_INPUT,
     NO_TRANSLATION
 )
@@ -52,10 +51,6 @@ def create_avatar(form):
         print("Changing background")
         avatar_path = change_img_background(avatar_path, background)
 
-
-
-
-
     # Translate language
     if translate_to_language != NO_TRANSLATION:
         print(f"Translating to {translate_to_language}...")
@@ -71,7 +66,7 @@ def create_avatar(form):
         remove_files([avatar_path])
         return("Error")
 
-    return result_path
+    return [result_path, avatar_path, audio_path]
 
 def sync_with_text(face_path):
     temp_folder_path = os.path.join(dir_path, "Wav2Lip", "temp")

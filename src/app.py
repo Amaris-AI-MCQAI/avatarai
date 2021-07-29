@@ -52,11 +52,12 @@ async def get_avatar_request(
     audio_file: UploadFile = File(...)
     ):
     form = await request.form()
-    result_path = create_avatar(form)  
-    if result_path == "Error":
+    result_path_list = create_avatar(form)  
+    print(result_path_list)
+    if result_path_list == "Error":
         raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail="Cannot Detect Face")
-    background_tasks.add_task(remove_files, paths=[result_path])
-    return FileResponse(result_path, media_type='application/mp4')
+    background_tasks.add_task(remove_files, paths=result_path_list)
+    return FileResponse(result_path_list[0], media_type='application/mp4')
 
 def remove_files(paths):
     for path in paths:
