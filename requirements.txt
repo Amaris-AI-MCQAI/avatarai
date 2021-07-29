@@ -6,7 +6,7 @@ click-plugins==1.1.1
 click-repl==0.2.0
 uvicorn==0.14.0
 protobuf==3.17.3
-PyYAML
+PyYAML==5.4.1
 librosa==0.7.0
 numpy==1.17.1
 opencv-contrib-python>=4.2.0.34
@@ -15,15 +15,14 @@ torch==1.1.0
 torchvision==0.3.0
 tqdm==4.45.0
 numba==0.48
-pixellib
-tensorflow
-google-cloud-speech
-google-cloud-texttospeech
-google-cloud-translate
-
+pixellib== 0.6.6
+tensorflow==2.3.3
 PyPDF2==1.26.0
 python-dateutil==2.8.1
 python-docx==0.8.11
 python-pptx==0.6.19
 python-multipart==0.0.5
 aiofiles==0.7.0
+google-cloud-speech
+google-cloud-texttospeech
+google-cloud-translate

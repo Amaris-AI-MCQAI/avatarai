@@ -1,13 +1,10 @@
 from fastapi import (
     FastAPI,
     File,
-    Form,
     UploadFile,
     HTTPException,
-    Query,
     Request,
     BackgroundTasks,
-    Depends,
 )
 from fastapi.responses import FileResponse
 from starlette.middleware.cors import CORSMiddleware
@@ -52,11 +49,12 @@ async def get_avatar_request(
     audio_file: UploadFile = File(...)
     ):
     form = await request.form()
-    result_path_list = create_avatar(form)  
-    print(result_path_list)
-    if result_path_list == "Error":
-        remove_files(result_path_list)
-        raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail="Cannot Detect Face")
+     
+    result_path_list = create_avatar(form) 
+    
+    if type(result_path_list) is dict:
+        raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail=result_path_list["Error"])
+
     background_tasks.add_task(remove_files, paths=result_path_list)
     return FileResponse(result_path_list[0], media_type='application/mp4')
 

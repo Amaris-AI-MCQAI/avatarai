@@ -14,3 +14,7 @@ Set-up:
 Start FastAPI server:
 
     cd src && python app.py
+
+
+For more details on Wav2Lip model, visit the
+[GitHub repository](https://github.com/Rudrabha/Wav2Lip).

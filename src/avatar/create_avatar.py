@@ -47,12 +47,11 @@ def create_avatar(form):
         avatar_path = change_img_background(avatar_path, background)
 
     # Create avatar
-    try:
+    try: 
         result_path = sync_with_text(audio_path=audio_path, face_path=avatar_path)
     except Exception as e:
-        print("Error:")
-        print(e)
-        return("Error")
+        remove_files([avatar_path, audio_path])
+        return({"Error": str(e)})
 
     return [result_path, avatar_path, audio_path]
 
