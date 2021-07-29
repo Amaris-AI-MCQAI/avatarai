@@ -15,8 +15,16 @@ import shutil
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 
+def dump(obj):
+  for attr in dir(obj):
+    print("obj.%s = %r" % (attr, getattr(obj, attr)))
+
 def create_avatar(form):
-    avatar = form['avatarFile']
+    # avatar = form['avatarFile']
+    avatar = form['src_file'].file()
+    audio = form['audio_file'].file()
+    transcript_text = form['transcriptText']
+
     avatar_file_type = form['avatarFileType']
     background = form['background']
     voice = form['voice']
@@ -35,35 +43,35 @@ def create_avatar(form):
         print("Changing background")
         avatar_path = change_background(avatar_path, background)
 
-    if transcript_kind == TRANSCRIPT_TEXT:
-        transcript_text = form['transcriptText']
-    elif transcript_kind == TRANSCRIPT_FILE:
-        transcript_file = form['transcriptFile']
-        transcript_file_type = form['transcriptFileType']
-        transcript_path = os.path.join(dir_path, 'Wav2Lip', 'temp', 
-        f'{unique_filename}.{MIME_TO_EXT[transcript_file_type]}')
-        transcript_wav_path = os.path.join(dir_path, 'Wav2Lip', 'temp', 
-        f'{unique_filename}.wav')        
+    # if transcript_kind == TRANSCRIPT_TEXT:
+    #     transcript_text = form['transcriptText']
+    # elif transcript_kind == TRANSCRIPT_FILE:
+    #     transcript_file = form['transcriptFile']
+    #     transcript_file_type = form['transcriptFileType']
+    #     transcript_path = os.path.join(dir_path, 'Wav2Lip', 'temp', 
+    #     f'{unique_filename}.{MIME_TO_EXT[transcript_file_type]}')
+    #     transcript_wav_path = os.path.join(dir_path, 'Wav2Lip', 'temp', 
+    #     f'{unique_filename}.wav')        
 
-        with open(transcript_path, "wb") as buffer:
-            # Save transcript file
-            shutil.copyfileobj(transcript_file.file, buffer)
+    #     with open(transcript_path, "wb") as buffer:
+    #         # Save transcript file
+    #         shutil.copyfileobj(transcript_file.file, buffer)
 
-        if transcript_file_type in [DOCX, PPTX, PDF]:
-            print('Extracting text from document...')
-            transcript_text = extract_text(transcript_path)
-        elif transcript_file_type == WAV:
-            transcript_orig_language = form['transcriptOrigLanguage']
-            transcript_text = speech_to_text(transcript_path, transcript_orig_language)
-        else:
-            # If file is video
-            print('Extracting raw audio...')
-            transcript_orig_language = form['transcriptOrigLanguage']
-            command = f'ffmpeg -y -i {transcript_path} -strict -2 {transcript_wav_path}'
-            subprocess.call(command, shell=True)
-            transcript_text = speech_to_text(transcript_wav_path, transcript_orig_language)
+    #     if transcript_file_type in [DOCX, PPTX, PDF]:
+    #         print('Extracting text from document...')
+    #         transcript_text = extract_text(transcript_path)
+    #     elif transcript_file_type == WAV:
+    #         transcript_orig_language = form['transcriptOrigLanguage']
+    #         transcript_text = speech_to_text(transcript_path, transcript_orig_language)
+    #     else:
+    #         # If file is video
+    #         print('Extracting raw audio...')
+    #         transcript_orig_language = form['transcriptOrigLanguage']
+    #         command = f'ffmpeg -y -i {transcript_path} -strict -2 {transcript_wav_path}'
+    #         subprocess.call(command, shell=True)
+    #         transcript_text = speech_to_text(transcript_wav_path, transcript_orig_language)
             
-        remove_files([transcript_path, transcript_wav_path])
+    #     remove_files([transcript_path, transcript_wav_path])
 
     # Translate language
     if translate_to_language != NO_TRANSLATION:

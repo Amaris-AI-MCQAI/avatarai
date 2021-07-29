@@ -4,12 +4,7 @@ click==7.1.2
 click-didyoumean==0.0.3
 click-plugins==1.1.1
 click-repl==0.2.0
-transformers==3.0.0
-nltk==3.6.2
 uvicorn==0.14.0
-spacy==3.0.6
-sense2vec==2.0.0
-sentencepiece==0.1.96
 protobuf==3.17.3
 PyYAML
 librosa==0.7.0
@@ -25,3 +20,10 @@ tensorflow
 google-cloud-speech
 google-cloud-texttospeech
 google-cloud-translate
+
+PyPDF2==1.26.0
+python-dateutil==2.8.1
+python-docx==0.8.11
+python-pptx==0.6.19
+python-multipart==0.0.5
+aiofiles==0.7.0

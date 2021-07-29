@@ -1,1 +1,8 @@
- wget --no-check-certificate -O "./mseg-semantic/models/mseg-3m.pth" "https://github.com/mseg-dataset/mseg-semantic/releases/download/v0.1/mseg-3m-1080p.pth"
+wget --no-check-certificate -O "./avatar/input_processor/xception_pascalvoc.pb" "https://github.com/Amaris-AI-MCQAI/avatarai/releases/download/1.0.0/xception_pascalvoc.pb"
+
+wget --no-check-certificate -O "./avatar/Wav2Lip/checkpoints/wav2lip.pth" "https://github.com/Amaris-AI-MCQAI/avatarai/releases/download/1.0.0/wav2lip.pth"
+
+wget --no-check-certificate -O "./avatar/Wav2Lip/checkpoints/wav2lip_gan.pth" "https://github.com/Amaris-AI-MCQAI/avatarai/releases/download/1.0.0/wav2lip_gan.pth"
+
+wget --no-check-certificate -O "./avatar/Wav2Lip/face_detection/detection/sfd/s3fd.pth" "https://github.com/Amaris-AI-MCQAI/avatarai/releases/download/1.0.0/s3fd.pth"
+
