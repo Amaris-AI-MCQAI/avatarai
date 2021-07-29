@@ -47,17 +47,16 @@ def ping_pong():
 @app.post("/")
 async def get_avatar_request(
     background_tasks: BackgroundTasks, 
-    # item: dict = {}, 
     request: Request,
     src_file: UploadFile = File(...),
     audio_file: UploadFile = File(...)
     ):
     form = await request.form()
-    print(src_file, audio_file)
-    print(form)
-    # result_path = create_avatar(form, file)  
-    # background_tasks.add_task(remove_files, paths=[result_path])
-    # return FileResponse(result_path, media_type='application/mp4')
+    result_path = create_avatar(form)  
+    if result_path == "Error":
+        raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail="Cannot Detect Face")
+    background_tasks.add_task(remove_files, paths=[result_path])
+    return FileResponse(result_path, media_type='application/mp4')
 
 def remove_files(paths):
     for path in paths:

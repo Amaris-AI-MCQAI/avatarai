@@ -64,14 +64,18 @@ def face_detect(images):
     return results
 
 
-def datagen(frames, mels):
+def datagen(frames, mels, static):
     img_batch, mel_batch, frame_batch, coords_batch = [], [], [], []
-    face_det_results = face_detect([frames[0]])
     img_size = 96
     wav2lip_batch_size = 32
 
+    if not static:
+        face_det_results = face_detect(frames) # BGR2RGB for CNN face detection
+    else:
+        face_det_results = face_detect([frames[0]])
+
     for i, m in enumerate(mels):
-        idx = 0 
+        idx = 0 if static else i%len(frames)
         frame_to_save = frames[idx].copy()
         face, coords = face_det_results[idx].copy()
 
@@ -131,19 +135,22 @@ def load_model(path):
     return model.eval()
 
 
-def infer(face_path, audio_path, outfile_path):
+def generate(face_path, audio_path, outfile_path):
     mel_step_size = 16
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print('Using {} for inference.'.format(device))
 
-    if not os.path.isfile(face_path):
-        raise ValueError('--face_path argument must be a valid path to video/image file')
+    print(face_path)
+    static = face_path.split('.')[1] in ['jpg', 'png', 'jpeg']
 
-    elif face_path.split('.')[1] in ['jpg', 'png', 'jpeg']:
+    if not os.path.isfile(face_path):
+        raise ValueError('face_path argument must be a valid path to video/image file')
+
+    elif static:
         full_frames = [cv2.imread(face_path)]
         fps = 25
 
-    else:
+    elif not static:
         video_stream = cv2.VideoCapture(face_path)
         fps = video_stream.get(cv2.CAP_PROP_FPS)
 
@@ -189,7 +196,7 @@ def infer(face_path, audio_path, outfile_path):
     full_frames = full_frames[:len(mel_chunks)]
 
     wav2lip_batch_size = 16
-    gen = datagen(full_frames.copy(), mel_chunks)
+    gen = datagen(full_frames.copy(), mel_chunks, static)
 
     for i, (img_batch, mel_batch, frames, coords) in enumerate(tqdm(gen,
                                                                     total=int(

@@ -86,7 +86,7 @@ def translate_text(target, text):
     return result["translatedText"]
 
 
-def change_background(image_path, background):
+def change_img_background(image_path, background):
     colors = {'White':(255,255,255), 'Black':(0,0,0), 'Green':(0,255,0), 'Red':(209,52,52) , 'Blue':(0,128,255)}
     color = colors[background]
     output = change_bg.color_bg(image_path, color, detect = "person")

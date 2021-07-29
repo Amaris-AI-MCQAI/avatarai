@@ -1,13 +1,13 @@
 version: "3.4"
 services:
   backend:
-    image: kaiwen98/moodle-mcqai
-    container_name: moodle-mcqai
+    image: kaiwen98/moodle-avatarai
+    container_name: moodle-avatarai
     build: 
       context: .
       target: python
     ports: 
-      - 17000:17000
+      - 16000:16000
     networks:
       - moodle_network
     environment: 
