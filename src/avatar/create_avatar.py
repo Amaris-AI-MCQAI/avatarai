@@ -1,13 +1,8 @@
-from .input_processor.process_inputs import (
-    translate_text, 
+from .input_processor.process_inputs import ( 
     change_img_background,
 )
 from .avatar_constants import (
-    NO_TRANSLATION, TRANSCRIPT_FILE, TRANSCRIPT_TEXT,
-    DOCX, PPTX, PDF, WAV,
-    MIME_TO_EXT,
     FROM_INPUT,
-    NO_TRANSLATION
 )
 from .Wav2Lip import inference
 import uuid
@@ -25,13 +20,9 @@ def create_avatar(form):
     # avatar = form['avatarFile']
     avatar = form['src_file']
     audio = form['audio_file']
-    transcript_text = form['transcriptText']
 
     avatar_file_type = form['avatarFileType']
     background = form['background']
-    voice = form['voice']
-    transcript_kind = form['transcriptKind']
-    translate_to_language = form['translateToLanguage']
 
     unique_filename = uuid.uuid4().hex
 
@@ -50,11 +41,6 @@ def create_avatar(form):
     if avatar_file_type != 'mp4' and background != FROM_INPUT :
         print("Changing background")
         avatar_path = change_img_background(avatar_path, background)
-
-    # Translate language
-    if translate_to_language != NO_TRANSLATION:
-        print(f"Translating to {translate_to_language}...")
-        transcript_text = translate_text(translate_to_language, transcript_text)
 
     # Create avatar
     try:
