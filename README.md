@@ -18,3 +18,7 @@ Start FastAPI server:
 
 For more details on Wav2Lip model, visit the
 [GitHub repository](https://github.com/Rudrabha/Wav2Lip).
+
+## API Endpoint
+
+The API methods are defined in src/app.py .

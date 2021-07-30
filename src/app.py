@@ -32,21 +32,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def dummy_func():
-    pass
-
 @app.get("/ping")
 def ping_pong():
     return {"pong" : "-"}
 
-# from starlette.requests import Request
 
 @app.post("/")
 async def get_avatar_request(
     background_tasks: BackgroundTasks, 
     request: Request,
-    src_file: UploadFile = File(...),
-    audio_file: UploadFile = File(...)
     ):
     form = await request.form()
      
