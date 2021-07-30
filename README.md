@@ -36,8 +36,8 @@ There are 4 pre-trained weights that will be downloaded when the install_weights
 
 | File                  | Directory Location                               | Used For    |
 | -----------           | -----------                                      | ----------- |
-| wav2lip_gan.pth       | src/avatar/Wav2Lip/chceckpoints                  | Wav2Lip lip-syncing  |
-| wav2lip.pth           | src/avatar/Wav2Lip/chceckpoints                   | Wav2Lip lip-syncing  |          |
-| s3fd.pth              | src/avatar/Wav2Lip/face_detection/detection/sfd  | Face detection|
-| xception_pascalvoc.pb | src/avatar/input_processor                       | Pixellib background changer|
+| wav2lip_gan.pth       | src/avatar/Wav2Lip/chceckpoints/                  | Wav2Lip lip-syncing  |
+| wav2lip.pth           | src/avatar/Wav2Lip/chceckpoints/                   | Wav2Lip lip-syncing  |          |
+| s3fd.pth              | src/avatar/Wav2Lip/face_detection/detection/sfd/  | Face detection|
+| xception_pascalvoc.pb | src/avatar/input_processor/                       | Pixellib background changer|
 
