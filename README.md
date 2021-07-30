@@ -1,4 +1,4 @@
-# Avatar
+# Avatar AI Model
 
 This module contains the Wav2Lip AI model for the Avatar. It receives processed inputs from the backend through a FastAPI endpoint and responds with the produced avatar video. 
 
@@ -10,6 +10,7 @@ Set Up:
     source env/bin/activate
     pip install -r requirements.txt
     cd src && bash install_weights.sh
+    sudo apt install ffmpeg
 
 Start FastAPI server:
 
@@ -36,8 +37,8 @@ There are 4 pre-trained weights that will be downloaded when the install_weights
 
 | File                  | Directory Location                               | Used For    |
 | -----------           | -----------                                      | ----------- |
-| wav2lip_gan.pth       | src/avatar/Wav2Lip/chceckpoints/                  | Wav2Lip lip-syncing  |
-| wav2lip.pth           | src/avatar/Wav2Lip/chceckpoints/                   | Wav2Lip lip-syncing  |          |
+| wav2lip_gan.pth       | src/avatar/Wav2Lip/checkpoints/                  | Wav2Lip lip-syncing  |
+| wav2lip.pth           | src/avatar/Wav2Lip/checkpoints/                   | Wav2Lip lip-syncing  |          |
 | s3fd.pth              | src/avatar/Wav2Lip/face_detection/detection/sfd/  | Face detection|
 | xception_pascalvoc.pb | src/avatar/input_processor/                       | Pixellib background changer|
 
